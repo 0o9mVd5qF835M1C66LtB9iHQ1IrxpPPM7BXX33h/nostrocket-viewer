@@ -1,0 +1,44 @@
+:root {
+  --border-radius: 12px;
+  --font: "Inter", sans-serif;
+  --article-font: "Lato", sans-serif;
+  --article-heading: "Playfair Display", serif;
+  --font-headings: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  max-width: 100vw;
+  font-size: 16px;
+}
+
+h1,
+h2,
+p,
+i,
+a,
+blockquote,
+.author-name a {
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  text-decoration: none;
+}
+
+.editor {
+  width: 100%;
+  min-height: 60vh;
+}
+
+.editor .rc-md-editor {
+  height: 100%;
+}

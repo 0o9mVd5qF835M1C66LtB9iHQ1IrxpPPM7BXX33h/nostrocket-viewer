@@ -1,0 +1,135 @@
+.article-blurred .article-image {
+  filter: blur(4px);
+}
+
+.article-blurred .content img {
+  filter: blur(4px);
+}
+
+article {
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+article h1 {
+  font-family: var(--article-heading);
+  font-size: 48px;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.custom-html-style h1 {
+  margin: 0 !important;
+}
+
+article h2 {
+  font-family: var(--article-font);
+  font-size: 32px;
+  font-weight: 700;
+  padding: 0;
+  text-align: left;
+  line-height: 34.5px;
+  letter-spacing: -0.45px;
+}
+
+article h3 {
+  font-family: var(--font);
+  margin: 0 0 24px 0;
+}
+
+article p, article i, article a, article li {
+  font-family: var(--font);
+  font-size: 21px;
+  letter-spacing: -0.03px;
+  line-height: 1.58;
+}
+
+article blockquote {
+  font-family: var(--article-heading);
+  font-size: 30px;
+  overflow-wrap: break-word;
+  /* text-align: center; */
+  padding: 0 0 0 50px;
+}
+
+@media (max-width: 520px) {
+  article blockquote {
+    padding: 0 0 0 12px;
+  }
+}
+
+article .summary {
+  margin: 55px 0 55px 0;
+}
+
+article code {
+  font-family: var(--font-mono);
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+article pre {
+  padding: 4px 8px;
+  font-size: 14px;
+  background: rgba(0,0,0,.1);
+  width: calc(100vw - 30px);
+  overflow-x: scroll;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+}
+
+article pre::-webkit-scrollbar {
+  display: none;
+}
+
+article pre code {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  width: calc(100vw - 30px);
+}
+
+article img {
+  max-width: 100% !important;
+  max-height: 420px !important;
+  border-radius: var(--border-radius);
+  object-fit: contain;
+  margin: 0 auto !important;
+}
+
+article .article-image {
+  object-fit: cover;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+article p a {
+  text-decoration: underline;
+}
+
+article ul, article ol {
+  padding-left: 21px;
+}
+
+article > ul, ol > li {
+  list-style: disc inside;
+}
+
+article li::marker {
+  color: #A966FF;
+}
+
+article li p {
+  margin-top: -30px;
+  margin-left: 16px;
+}
+
+article p > a  {
+  color: #A966FF;
+}
+
+article iframe {
+  margin: 0 auto;
+  border-radius: var(--border-radius);
+  max-width: 100%;
+}
