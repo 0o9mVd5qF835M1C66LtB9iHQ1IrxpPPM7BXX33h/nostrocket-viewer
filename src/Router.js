@@ -10,6 +10,7 @@ import NPub from "./pages/npub";
 import Write from "./pages/write";
 import Qa from "./pages/qa"
 import IdentityTree from "./pages/identity"
+import Test from "./pages/test"
 
 export default createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export default createBrowserRouter([
   {
     path: "/identityTree",
     element: <IdentityTree />,
+  },
+  {
+    path: "/test",
+    element: <Test />,
   },
   {
     path: "search",
