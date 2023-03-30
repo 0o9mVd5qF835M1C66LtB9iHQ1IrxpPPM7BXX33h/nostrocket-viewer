@@ -1,8 +1,10 @@
+
+
 import { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Emoji } from "emoji-picker-react";
-
+import IdentityTree from "../lib/IdentityTree";
 import { Flex, Button, Heading, Text } from "@chakra-ui/react";
 
 import {
@@ -22,7 +24,7 @@ const RECENT = "recent";
 const HOT = "hot";
 const TOP = "top";
 
-export default function IdentityTree() {
+export default function IdentityTreePage() {
   const [followsOnly, setFollowsOnly] = useState(false);
   const [sortBy, setSortBy] = useState(RECENT);
   const { user, relays, follows, selectedRelay } = useSelector((s) => s.relay);
@@ -31,7 +33,7 @@ export default function IdentityTree() {
   const followsFeed = useNostrEvents({
     filter: {
       kinds: [10310],
-      limit: 1
+      limit: 10,
     },
     enabled: !followsOnly,
   });
@@ -206,7 +208,7 @@ export default function IdentityTree() {
             </Flex>
           )}
         </Flex>
-        <Feed
+        <IdentityTree
           reactions={reactions.events}
           events={sortedEvents}
           seenByRelay={seenByRelay}

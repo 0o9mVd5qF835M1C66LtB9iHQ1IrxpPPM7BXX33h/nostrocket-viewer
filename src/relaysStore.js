@@ -5,24 +5,25 @@ const defaultRelays = [
   {
     url: "wss://nostr.688.org/",
     options: { read: true, write: true },
-  },
-  {
-    url: "wss://nostr-relay.nokotaro.com/",
-    options: { read: true, write: true },
-  },
-  {
-    url: "wss://nostr-pub.wellorder.net",
-    options: { read: true, write: true },
-  },
-  { url: "wss://relay.nostr.band/", options: { read: true, write: true } },
-  { url: "wss://relay.damus.io/", options: { read: true, write: true } },
-  { url: "wss://nos.lol/", options: { read: true, write: true } },
-  { url: "wss://offchain.pub/", options: { read: true, write: true } },
-  {
-    url: "wss://relay.nostr.wirednet.jp/",
-    options: { read: true, write: true },
-  },
-  { url: "wss://nostr.wine/", options: { read: true, write: true } },
+  }
+  // ,
+  // {
+  //   url: "wss://nostr-relay.nokotaro.com/",
+  //   options: { read: true, write: true },
+  // },
+  // {
+  //   url: "wss://nostr-pub.wellorder.net",
+  //   options: { read: true, write: true },
+  // },
+  // { url: "wss://relay.nostr.band/", options: { read: true, write: true } },
+  // { url: "wss://relay.damus.io/", options: { read: true, write: true } },
+  // { url: "wss://nos.lol/", options: { read: true, write: true } },
+  // { url: "wss://offchain.pub/", options: { read: true, write: true } },
+  // {
+  //   url: "wss://relay.nostr.wirednet.jp/",
+  //   options: { read: true, write: true },
+  // },
+  // { url: "wss://nostr.wine/", options: { read: true, write: true } },
 ];
 
 const user = getKey("p");

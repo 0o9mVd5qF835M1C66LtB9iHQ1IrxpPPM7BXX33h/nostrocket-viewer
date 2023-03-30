@@ -1,52 +1,78 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
+import { Box} from "@chakra-ui/react";
+import { Tree, TreeNode } from 'react-organizational-chart';
+import styled from 'styled-components';
 
-function Tree() {
-  const [messages, setMessages] = useState([]);
-  const [treeData, setTreeData] = useState(null);
 
-  useEffect(() => {
-    const socket = new WebSocket('wss://example.com/socket');
+const StyledNode = styled.div`
+  padding: 5px;
+  border-radius: 8px;
+  display: inline-block;
+  border: 1px solid red;
+`;
 
-    socket.addEventListener('message', event => {
-      const message = JSON.parse(event.data);
+const generateTreeData = (familyData, parent) => {
+  const node = { name: parent };
+  const children = familyData.filter((person) => person.parent === parent);
 
-      if (message.type === 'eose') {
-        setTreeData(processMessages(messages));
-      } else {
-        setMessages(prevMessages => [...prevMessages, message]);
-      }
-    });
-
-    return () => {
-      socket.close();
-    };
-  }, []);
-
-  function processMessages(messages) {
-    // Process the messages and return the tree data
-    // You may need to modify this function based on the structure of your messages
-    return { id: 1, label: 'Root Node', children: [] };
+  if (children.length === 0) {
+    return node;
   }
 
-  if (!treeData) {
-    // Render a loading state while waiting for treeData to be received
-    return <div>Loading tree data...</div>;
-  }
+  node.children = children.map((child) => generateTreeData(familyData, child.name));
+  return node;
+};
+const generateIdentityTreeData = (event, parent) => {
 
-  function renderNode(node) {
-    return (
-      <div>
-        <span>{node.label}</span>
-        {node.children && (
-          <ul>
-            {node.children.map(child => (
-              <li key={child.id}>{renderNode(child)}</li>
-            ))}
-          </ul>
-        )}
-      </div>
-    );
-  }
-
-  return <div>{renderNode(treeData)}</div>;
+  const identitieRaw = JSON.parse(event.content).identity;
+  console.log(identitieRaw)
+  const identities = Object.entries(identitieRaw).map(([id, info]) => {
+    const account = info.Account;
+    if (info.UniqueSovereignBy === "1Humanityrvhus5mFWRRzuJjtAbjk2qwww") 
+      {const parent = info.UniqueSovereignBy;
+        return {
+          id,
+          name: account,
+          parent: parent,
+        };}
+        else{
+          const parent = identities.identity[info.UniqueSovereignBy]
+          return {
+            id,
+            name: account,
+            parent: parent,
+          };;
+        }
+  });
+  console.log(identities,'identities')
+  // identities.push({name: "1Humanityrvhus5mFWRRzuJjtAbjk2qwww", parent: null})
+  return identities
 }
+export default function IdentityTree ({ events, reactions = [], seenByRelay, ...rest }) {
+  //change events to family data format here
+  console.log(events,'a')
+  if (events.length=== 0) return (<Box>Empty</Box>);
+ const familyData = generateIdentityTreeData(events[0], null);
+ 
+  const treeData = generateTreeData(familyData, null);
+  console.log(treeData,familyData,'aaaa')
+  function renderTreeData(data) {
+    console.log(data,'data')
+    return data.map(item => (
+ 
+      <TreeNode label={<StyledNode>{item.name}</StyledNode>}>
+        {item.children && renderTreeData(item.children)}
+      </TreeNode>
+    ));
+  }
+  return (
+    <Tree
+    visibility= {'hidden'}
+    lineColor={'yellow'}
+    lineBorderRadius={'10px'}>
+      {renderTreeData(treeData)}
+    </Tree>
+    // renderTreeData([treeData])
+  );
+};
+
