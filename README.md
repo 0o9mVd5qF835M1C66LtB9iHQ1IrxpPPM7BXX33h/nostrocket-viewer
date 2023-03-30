@@ -1,4 +1,4 @@
-# A trail for nostrocket status viewer with react 
+# A trial for nostrocket status viewer with react 
 
 upstream code habala
 
