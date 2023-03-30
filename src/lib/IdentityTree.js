@@ -45,16 +45,16 @@ const generateIdentityTreeData = (event, parent) => {
         }
   });
   console.log(identities,'identities')
-  // identities.push({name: "1Humanityrvhus5mFWRRzuJjtAbjk2qwww", parent: null})
+  identities.push({name: "1Humanityrvhus5mFWRRzuJjtAbjk2qwww", parent: null})
   return identities
 }
 export default function IdentityTree ({ events, reactions = [], seenByRelay, ...rest }) {
   //change events to family data format here
   console.log(events,'a')
   if (events.length=== 0) return (<Box>Empty</Box>);
- const familyData = generateIdentityTreeData(events[0], null);
+ const familyData = generateIdentityTreeData(events[0], "1Humanityrvhus5mFWRRzuJjtAbjk2qwww");
  
-  const treeData = generateTreeData(familyData, null);
+  const treeData = generateTreeData(familyData, "1Humanityrvhus5mFWRRzuJjtAbjk2qwww");
   console.log(treeData,familyData,'aaaa')
   function renderTreeData(data) {
     console.log(data,'data')
@@ -66,11 +66,11 @@ export default function IdentityTree ({ events, reactions = [], seenByRelay, ...
     ));
   }
   return (
-    <Tree
+    <Tree label ={<StyledNode>1Humanityrvhus5mFWRRzuJjtAbjk2qwww</StyledNode>} 
     visibility= {'hidden'}
     lineColor={'yellow'}
     lineBorderRadius={'10px'}>
-      {renderTreeData(treeData)}
+      {renderTreeData(treeData.children)}
     </Tree>
     // renderTreeData([treeData])
   );

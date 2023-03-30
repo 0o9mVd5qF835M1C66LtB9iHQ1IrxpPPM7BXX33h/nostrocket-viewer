@@ -35,18 +35,18 @@ export default function IdentityTreePage() {
       kinds: [10310],
       limit: 10,
     },
-    enabled: !followsOnly,
+    enabled: true,
   });
   // console.log(followsFeed)
   const allFeed = useNostrEvents({
     filter: {
       kinds: [10310],
-      limit: 20,
+      // limit: 20,
     },
-    enabled: !followsOnly,
+    enabled: true,
   });
   const { events, seen, seenByRelay } = followsOnly ? followsFeed : allFeed;
-  console.log(events)
+  console.log(events,"??")
   const filteredEvents = useMemo(() => {
     if (!selectedRelay) {
       return events;
