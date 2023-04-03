@@ -20,7 +20,8 @@ const familyData = [
   { name: 'Cousin 3', parent: 'Uncle' },
 ];
 const generateTreeData = (familyData, parent) => {
-  const node = { name: parent };
+  const parentNode = familyData.filter((person) => person.name === parent)
+  const node = { name: parentNode };
   const children = familyData.filter((person) => person.parent === parent);
 
   if (children.length === 0) {
